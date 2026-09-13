@@ -2,5 +2,27 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
-<h1>{{ message }}</h1>
+
+<section class="max-w-4xl mx-auto py-12 px-6">
+    <div class="text-center mb-12">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">About Our Application</h1>
+        <p class="text-slate-600 text-lg">Minimalist design meets accurate dietary tracking.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-3">Simple & Purpose-Built</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Our tracker eliminates the clutter of bloated health apps. We focus on what matters most: quick entry logging and immediate insight into your total caloric intake.
+            </p>
+            
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg text-gray-700">
+            <h3 class="font-bold text-lg mb-2">Built For Consistency</h3>
+            <p class="text-sm leading-relaxed">
+                Whether you are bulking, cutting, or maintaining, weight management comes down to energy balance. Keep track of every meal effortlessly.
+            </p>
+        </div>
+    </div>
+</section>
 {% endblock %}

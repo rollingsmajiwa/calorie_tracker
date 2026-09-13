@@ -3,6 +3,19 @@
 {% block title %}Home{% endblock%}
 {% block content %}
 
-<h1>Welcome to my website</h1>
-{{ name|upper}}
+
+
+<section class="bg-pink-50 text-gray-600 min-h-[80vh] flex flex-col justify-center items-center text-center px-6 rounded-2xl shadow-xl my-6">
+    <div class="max-w-2xl">
+      
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+            Take Control of Your <span class="text-gray-600">Daily Nutrition</span>
+        </h1>
+        <p class="text-gray-500 text-lg sm:text-xl mb-8 leading-relaxed">
+            Welcome, {{ name|default:"User" }} Track your meals, log daily calories, and reach your fitness targets with clean simplicity.
+        </p>
+        
+       
+    </div>
+</section>
 {% endblock %}
