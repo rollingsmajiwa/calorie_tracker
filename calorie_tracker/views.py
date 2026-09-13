@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import FoodItem
+from .models import FoodItem, Author
 
 # Create your views here.
 def calorie_list(request):
@@ -17,23 +17,32 @@ def contactproject(request):
         title = request.POST.get("title")
         calorie_amount = request.POST.get("calorie_amount")
         if title and calorie_amount:
-            FoodItem.objects.create(title=title, calorie_amount=calorie_amount)
-            return redirect("home")
+            author_instance, _= Author.objects.get_or_create( 
+                first_name = "default",
+                last_name = "Author",
+                email="default@gg")
+           
+            FoodItem.objects.create(author= author_instance, title=title, calorie_amount=calorie_amount)
+            return redirect("contact")
+
+
+
+
     food_items = FoodItem.objects.all()
     
 
     total_calories = 0
     for cal in food_items:
         total_calories += cal.calorie_amount
-    context = {"message":"Calorie Tracker", "food_items": food_items, "total_calories": total_calories}
+    context = {"food_items": food_items, "total_calories": total_calories}
     return render(request, "calorie_tracker/contact.html", context)
 
 def delete_food(request, id):
     if request.method == "POST":
         item = FoodItem.objects.get(id=id)
         item.delete()
-    return redirect("home")
+    return redirect("contact")
 def reset_calories(request):
     if request.method == "POST":
         FoodItem.objects.all().delete()
-    return redirect("home")
+    return redirect("contact")
