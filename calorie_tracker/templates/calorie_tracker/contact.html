@@ -11,35 +11,59 @@
     </form>
     <form action="{% url 'contact' %}" method="post">
            {% csrf_token %}
-           <input type="text" name="title" placeholder="Food item">
-           <input type="number" name="calorie_amount" placeholder="Calories">
-        <button type="submit" class="w-xl mt-6 bg-pink-300 hover:bg-pink-400 text-grey-500 border font-semibold py-2 px-4 rounded-lg text-sm transition">Add</button>
+           <div class="w-lg">
+               <input type="text" name="title" placeholder="Food item" class="px-4 py-2.5 rounded-xl border border-black focus:outline-none transition text-gray-800 placeholder-gray-400">
+               <input type="number" name="calorie_amount" placeholder="Calories" class="px-4 py-2.5 rounded-xl border border-black focus:outline-none transition text-gray-800 placeholder-gray-400">
+                       <button type="submit" class="mt-6 bg-pink-300 hover:bg-pink-400 text-grey-500 border font-semibold py-2 px-4 rounded-lg text-sm transition">Add</button>
+           </div>
     </form>
-    <h3>Today's Food Taken</h3>
-    <table border="1" cellpadding="5">
-        <thead>
-            <th>Food</th>
-            <th>Calories</th>
-            <th>Action</th>
-        </thead>
-        <tbody>
-            {% for item in food_items %}
-            <tr >
-                <td>{{ item.title}}</td>
-                <td>{{ item.calorie_amount }}</td>
-                <td>
-                    <form action="{%  url 'delete_food' item.id %}" method="post">
-                        {% csrf_token %}
+    <div class="bg-white rounded-2xl shadow-sm overflow-hidden my-6">
     
-                    <button type="submit" class="w-md mt-6 bg-pink-300 hover:bg-pink-400 text-grey-500 border font-semibold py-2 px-4 rounded-lg text-sm transition">Delete</button>
+    <div class="px-6 py-4 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
+        <h3 class="text-lg font-bold text-gray-800">Today's Food Taken</h3>
+        
+    </div>
+
     
-                    </form>
-                </td>
-    
-            </tr>
-            {% endfor %}
-        </tbody>
-    
-    </table>
+    <div class="overflow-x-auto">
+        <table class="w-xl text-left border-collapse">
+            <thead>
+                <tr class="border-b border-gray-100 bg-gray-50/50 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                    <th class="px-6 py-3">Food</th>
+                    <th class="px-6 py-3">Calories</th>
+                    <th class="px-6 py-3 text-right">Action</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 text-sm">
+                {% for item in food_items %}
+                <tr class="hover:bg-gray-50/80 transition-colors">
+                    <td class="px-6 py-4 font-semibold text-gray-800">
+                        {{ item.title }}
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="inline-block bg-gray-100 text-gray-700 font-bold px-2.5 py-1 rounded-md text-xs">
+                            {{ item.calorie_amount }} kcal
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <form action="{% url 'delete_food' item.id %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" 
+                                    class="bg-rose-50 hover:bg-rose-100 text-rose-600 font-medium py-1.5 px-3 rounded-lg text-xs transition-colors border border-rose-200">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="px-6 py-8 text-center text-slate-400 text-sm">
+                        No food items logged yet today.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
