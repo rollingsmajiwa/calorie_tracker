@@ -3,7 +3,7 @@ from .models import FoodItem, Author
 
 # Create your views here.
 def calorie_list(request):
-    context = {"name" : "Collo", "age": 28}
+    context = {"name" : " Rollings ", "age": 28}
     return render(request, "calorie_tracker/index.html", context)
 def aboutproject(request):
     context = {"message": "Wecome to my About section"}
