@@ -29,6 +29,7 @@ def contactproject(request):
 
 
     food_items = FoodItem.objects.all()
+    print(food_items.query)
     
 
     total_calories = 0
