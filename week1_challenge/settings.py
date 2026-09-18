@@ -79,25 +79,14 @@ WSGI_APPLICATION = 'week1_challenge.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'calorie_db',
-            'USER': 'postgres',
-            'PASSWORD': '@Rollsbrown22',
-            'HOST': 'localhost',
-            'POST': '5432'
-        }
-    }
-else:
-    DATABASES = {
+DATABASES = {
         'default': dj_database_url.config(
             default=os.environ.get('DATABASE_URL'),
             conn_max_age=600,
             conn_health_checks=True,
         )
     }
+    
 
 
 # Password validation
